@@ -53,5 +53,57 @@ docker ps
 
 ![image-20210815100844843](../images/docker_lifecycle.png)
 
-`docker run` = `docker create ` + `docker start`
+`docker run <image>` = `docker create <image> ` + `docker start <container>`
+
+
+
+- docker create -> 파일 스냅샷 하드디스크에!
+
+
+
+# Docker Stop vs Docker Kill
+
+- Stop 
+  - gracefull 하게 멈춘다. 
+  - 다시 start 가능! 말 그대로 중지!
+- kill
+  - 강제로 멈추게 하고, 죽인다!
+
+
+
+# 컨테이너 삭제
+
+`docker rm <container>`
+
+중지 이후에 삭제 가능!
+
+중지되지 않아도 지우고 싶으면? `--force` 옵션 줄 수는 있다
+
+- 이미지 삭제하고 싶으면?
+  - `rmi` 사용!
+  - `docker rmi <image id>`
+
+- 컨테이너 / 이미지 / 네트워크 모두 삭제하고 싶으면?
+  - `docker system prune`
+  - 모두 정리하고 싶을 때!
+  - 실행중인 컨테이너엔 영향 없음!
+
+
+
+# 레디스를 이용한 컨테이너 이해
+
+- `docker run redis`
+- 레디스 서버를 키고, 레디스 클라이언트 작동이 안된다?
+- 레디스 클라이언트도 컨테이너 안에서 실행을 해야함
+- `docker exec -it <컨테이너 아이디> redis-cli` 로 컨테이너 안에서 클라이언트 써야함
+- `-it` 를 적어야 ( interactive terminal ) 계속 명령어를 적을 수 있음 안적으면 redis-cli 실행 후 바로 꺼짐
+
+
+
+# 실행 중인 컨테이너에서 터미널 생활 즐기기
+
+- `docker exec -it <container> sh`
+- `docker run -it <image> sh` 
+
+
 
