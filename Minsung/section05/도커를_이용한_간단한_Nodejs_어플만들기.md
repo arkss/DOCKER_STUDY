@@ -298,3 +298,35 @@ CMD ["node", "server.js"]
 
 
 pacakge.json이 바뀌었을 때, 즉 정말로 종속성을 새롭게 install 해야할 때만 하고 나머지는 cache 전략을 취할 수 있습니다.
+
+
+
+## 5.9 Docker Volume에 대하여
+
+기존에는 변경된 소스가 있을 때 COPY 한 후 이미지를 다시 빌드를 해주고 컨테이너를 실행해야 반영되었습니다.
+
+이러한 작업은 시간 소요가 크며 이미지도 너무나 많이 빌드하게 됩니다.
+
+이러한 문제를 해결하기 위해 Volume을 사용합니다.
+
+
+
+Volume은 COPY가 아닌 Mapping입니다.
+
+도커 컨테이너 안에서 로컬의 파일을 참조하는 방식입니다.
+
+![image-20210820210853734](../images/section05/docker_volume.png)
+
+
+
+Volume을 사용해서 어플리케이션을 실행하는 명령어는 아래와 같습니다.
+
+```
+docker run -p 5000:8000 -v /usr/src/app/node_modules -v $(pwd):/usr/src/app {이미지}
+```
+
+* -v /usr/src/app/node_modules : 로컬에는 node_modules이 없기에 컨테이너에서 Mapping하지 않도록 함
+* -v $(pwd):/usr/src/app : /usr/src/app 경로에서 $(pwd), 현재 경로를 참조함
+
+
+이제는 새롭게 build할 필요없이 stop하고 다시 run 해주면 수정사항이 변경되는 것을 확인할 수 있습니다.
