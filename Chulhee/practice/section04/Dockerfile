@@ -6,3 +6,4 @@ FROM alpine
 
 # 컨테이너 시작 시 실행 될 명령어 명시
 CMD [ "echo", "hello" ]
+ 
