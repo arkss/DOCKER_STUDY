@@ -186,20 +186,6 @@ services:
 
 test 부분을 추가해주고 `docker-compose up` 진행 시 테스트 소스가 변경될 경우 매핑된 파일의 내역이 변경된 것을 알아챌 수 있다.
 
-> 근데 커맨드도 다시 실행하는구나...?!
->
-> nodemon 처럼 소스 변경을 감지해서 서버를 재시작하니깐?!!
-
-```yaml
-testtwo:
-    build:
-      context: .
-      dockerfile: Dockerfile.dev
-    command: ["echo", "run"]
-```
-
-이런건 추가해도 재시작 하지 않는다. 매핑된 볼륨도 없고, 소스코드 변경이 감지되지 않으니까!
-
 
 
 ## 7.8 운영환경을 위한 Nginx

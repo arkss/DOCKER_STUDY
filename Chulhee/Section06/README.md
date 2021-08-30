@@ -111,6 +111,11 @@ Emitted 'error' event at:
 
 
 
+> Docker를 설치한 후 Host의 네트워크 인터페이스를 살펴보면 `docker0`라는 가상 인터페이스가 생긴다.
+> `docker0`는 일반적인 가상 인터페이스가 아니며 도커가 자체적으로 제공하는 네트워크 드라이버 중 브리지(Bridge)에 해당
+
+
+
 ## 6.5 Docker Compose 파일 작성하기
 
 ![image-20210825151046418](../images/06_docker_compose.png)
@@ -152,4 +157,9 @@ services:
   - 필요하지 않을 때도 강제로 이미지를 빌드, 컨테이너를 시작
 - `docker-compose up --no-build`
   - 이미지 빌드 없이 컨테이너를 시작
+
+- `docker-compose up -d`
+  - detached 모드로 켜서 , 앱을 백그라운드에서 실행 시킨다. 아웃풋 표출 안함
+- `docker-compose down`
+  - 컨테이너 멈추기
 
