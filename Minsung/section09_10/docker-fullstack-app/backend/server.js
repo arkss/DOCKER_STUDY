@@ -19,6 +19,7 @@ db.pool.query(`CREATE TABLE lists (
 })
 
 app.get('/api/values', function(req, res){
+    console.log("api/values --")
     db.pool.query('SELECT * FROM lists;',
         (err, results, fields) => {
             if (err) 

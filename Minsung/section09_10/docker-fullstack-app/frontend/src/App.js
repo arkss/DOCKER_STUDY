@@ -11,7 +11,7 @@ function App() {
       console.log('response', response)
       setLists(response.data)
     })
-  }, [input])
+  }, [])
 
   const [lists, setLists] = useState([])
   const [value, setValue] = useState("")
@@ -40,11 +40,15 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <div className="container">
+          {lists && lists.map((lists, index) => (
+            <li key={index}>{lists.value}</li>
+          ))}
           <form className="example" onSubmit={submitHandler}>
             <input
               type="text"
               placeholder="입력해주세요..."
               onChange={changeHandler}
+              value={value}
             />
             <button type="submit">확인</button>
           </form>
